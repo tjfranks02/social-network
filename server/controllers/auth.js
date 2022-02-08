@@ -54,6 +54,25 @@ const findOneUser = (username, email) => {
 
 
 /*
+attempts to find a user with a specified username in the db.
+
+params:
+  username (string): the username to check for in the db.
+
+returns (Promise):
+  resolved if db queried sucessfully and res returned, rejected otherwise. 
+*/
+const findUserByUsername = (username) => {
+  let sql = util.format("SELECT username, password "
+    + "FROM users "
+    + "WHERE username='{0}';", username
+  );
+
+  return connection(sql);
+};
+
+
+/*
 attempts to insert a user into the database.
 
 params:
@@ -69,6 +88,41 @@ const insertOneUser = (username, email, password, userId) => {
     + "VALUES('{0}','{1}','{2}','{3}');", userId, username, password, email
   );
     return connection(sql);
+};
+
+
+/*
+determines whether password given matches the password of a user already 
+present in the db.
+
+params:
+  user ({}): the user record found in the db matching the given username.
+  password (string): plaintext password to compare against password already in
+  db.
+
+returns (Promise):
+  resolves if password matches user already in db, rejects otherwise.
+*/
+const verifyPassword = (user, password) => {
+
+  return new Promise((resolve, reject) => {
+    resolve(bcrypt.compare(password, user.password));
+  })
+  .then((match) => {
+    console.log("value of match:", match);
+    return new Promise((resolve, reject) => {
+      if (match) {
+        resolve(match)
+      } else {
+        reject({
+          errMSG: "The passwords do not match."
+        });
+      }
+    });
+  })
+  .catch((err) => {
+    return Promise.reject(err);
+  });
 };
 
 
@@ -97,7 +151,49 @@ returns:
   the res object.
 */
 exports.signin = (req, res, next) => {
-  return res.json({message: "Yee"});
+  let username = req.body.username;
+  let password = req.body.password;
+
+  if (!username || !password) {
+    return res.status(422).send({
+      errorMSG: "Both username and password must be present."
+    });
+  }
+
+  findUserByUsername(username)
+  .then((results) => {
+    
+    return new Promise((resolve, reject) => {
+      
+      if (results.length === 0) {
+        reject({
+          errorMSG: "No account exists with that username."
+        });
+      }
+
+      resolve(results[0]);
+    });
+  })
+  .then((user) => {
+    return verifyPassword(user, password);
+  })
+  .then((match) => {
+    console.log("match:", match);
+    return new Promise((resolve, reject) => {
+      if (match) {
+        res.json({
+          token: genToken(username, jwtSecret, "30d"),
+          refresh_token: genToken(username, refreshSecret, "30d")
+        });
+        resolve();
+      } else {
+        reject();
+      }
+    });
+  })
+  .catch((err) => {
+    return res.status(500).send(err);
+  });
 };  
 
 
@@ -133,22 +229,23 @@ exports.signup = async (req, res, next) => {
           errorMSG: "There is already a user with that username or password."
         });
       } else {
-        resolve(results);
+        resolve();
       }
     });
   })
   .then(() => hashPassword(password))
   .then((hash) => {
     return insertOneUser(username, email, hash, userId);
-  }).then(() => {
+  })
+  .then(() => {
     return new Promise((resolve) => {
       res.json({
-      token: genToken(username, jwtSecret, "30d"),
-      refresh_token: genToken(username, refreshSecret, "30d")
+        token: genToken(username, jwtSecret, "30d"),
+        refresh_token: genToken(username, refreshSecret, "30d")
       });
       resolve();
     });
   }).catch((err) => {
-    return res.status(500).send(err)
+    return res.status(500).send(err);
   });
 };
