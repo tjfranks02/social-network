@@ -9,7 +9,7 @@ const pool = mysql.createPool({
   database: conInfo.database
 });
 
-module.exports = (sql, callback) => {
+(sql, callback) => {
 
   pool.getConnection((err, connection) => {
     
@@ -30,3 +30,24 @@ module.exports = (sql, callback) => {
     });
   });
 };
+
+module.exports = (sql) => {
+
+  return new Promise((resolve, reject) => {
+    pool.getConnection((err, connection) => {
+      
+      if (err) {
+        reject({errorMSG: "Failed to acquire connection."});
+      }
+
+      connection.query(sql, (err, results) => {
+        
+        if (err) {
+          reject({errorMSG: "Failed to query DB."});
+        }
+
+        resolve(results);
+      });
+    });
+  });
+}
