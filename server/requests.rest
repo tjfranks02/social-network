@@ -2,7 +2,7 @@ POST http://localhost:3000/signup
 content-type: application/json
 
 {
-  "username": "isas",
+  "username": "gretale",
   "password": "yeehaw",
-  "email": "george@hrron.edu.au"
+  "email": "dfasdzvzcasddfxaaaaus"
 }
