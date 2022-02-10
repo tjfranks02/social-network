@@ -215,7 +215,7 @@ exports.signup = async (req, res, next) => {
   let userId = crypto.randomBytes(16).toString("hex");
 
   if (!username || !password || !email) {
-    return Promise.reject({
+    return res.status(422).send({
       errorMSG: "All of username, password and email must be present."
     });
   }
