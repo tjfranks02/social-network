@@ -226,7 +226,7 @@ exports.signup = async (req, res, next) => {
 
       if (results.length > 0) {
         reject({
-          errorMSG: "There is already a user with that username or password."
+          errorMSG: "There is already a user with that username or email."
         });
       } else {
         resolve();
@@ -246,6 +246,7 @@ exports.signup = async (req, res, next) => {
       resolve();
     });
   }).catch((err) => {
-    return res.status(500).send(err);
+    console.log(err);
+    return res.status(422).send(err);
   });
 };

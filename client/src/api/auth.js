@@ -2,17 +2,23 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000'
 
-export async function signUp(user, after) {
+/*
+send a signUp request to backend server.
 
-  let res = {};
+parameters:
+  user ({}): object containing user info e.g. username, password, email.
+  after (function): callback after receiving response from API.
 
-  try {
-    res = await axios.post(BASEURL + '/signup', user);
-    localStorage.setItem('token', res.data.token);
-    after();
-  } catch(err) {
-    console.log(err);
-    return undefined;
-  }
+returns (string):
+  error message return from process (if unsuccessful). undefined if succesful.
+*/
+export function signUp(user, after) {
+
+  return axios.post(BASE_URL + '/signup', user).then((res) => {
+    let token = res.data.token;
+    localStorage.setItem('token', token);
+  }).catch((err) => {
+    return err.response.data.errorMSG;
+  });
 
 }
