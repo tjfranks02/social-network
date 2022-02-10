@@ -6,8 +6,11 @@ const jwtSecret = require("../config/keys").authKeys.jwtSecret
 const refreshSecret = require("../config/keys").authKeys.refreshSecret
 const connection = require("../connect")
 const util = require("../util")
-const { notStrictEqual } = require("assert")
 
+
+/*
+bcrypt config
+*/
 const SALT_ROUNDS = 10;
 
 
@@ -105,24 +108,21 @@ returns (Promise):
 */
 const verifyPassword = (user, password) => {
 
-  return new Promise((resolve, reject) => {
-    resolve(bcrypt.compare(password, user.password));
-  })
-  .then((match) => {
-    console.log("value of match:", match);
-    return new Promise((resolve, reject) => {
-      if (match) {
-        resolve(match)
-      } else {
-        reject({
-          errMSG: "The passwords do not match."
-        });
-      }
+  return bcrypt.compare(password, user.password)
+    .then((match) => {
+      return new Promise((resolve, reject) => {
+        if (match) {
+          resolve(match)
+        } else {
+          reject({
+            errMSG: "The passwords do not match."
+          });
+        }
+      });
+    })
+    .catch((err) => {
+      return Promise.reject(err);
     });
-  })
-  .catch((err) => {
-    return Promise.reject(err);
-  });
 };
 
 
@@ -171,14 +171,13 @@ exports.signin = (req, res, next) => {
         });
       }
 
-      resolve(results[0]);
+      resolve(results[0]); //existing user record
     });
   })
-  .then((user) => {
-    return verifyPassword(user, password);
+  .then((existingUser) => {
+    return verifyPassword(existingUser, password);
   })
   .then((match) => {
-    console.log("match:", match);
     return new Promise((resolve, reject) => {
       if (match) {
         res.json({
@@ -192,6 +191,7 @@ exports.signin = (req, res, next) => {
     });
   })
   .catch((err) => {
+    console.log(err);
     return res.status(500).send(err);
   });
 };  

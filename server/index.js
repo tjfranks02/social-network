@@ -8,5 +8,5 @@ app.use(express.json())
 
 require("./routes/authRoutes")(app);
 
-const PORT = 3000 | process.env.PORT;
+const PORT = 5000 | process.env.PORT;
 app.listen(PORT);
