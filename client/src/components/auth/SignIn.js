@@ -1,22 +1,21 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
-import {signUp as requestSignUp} from '../../api/auth'
+import {signIn as requestSignIn} from '../../api/auth'
 
 
-const SignUp = (props) => {
+const SignIn = (props) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [errorMSG, setErrorMSG] = useState('');
   
   const nav = useNavigate();
 
   const onSignUp = async (evnt) => {
     evnt.preventDefault();
-    let err = await requestSignUp({username, password, email});
-    
+    let err = await requestSignIn({username, password});
+
     if (err) {
       setErrorMSG(err);
     } else {
@@ -35,12 +34,6 @@ const SignUp = (props) => {
             value={username}
             onChange={evnt => setUsername(evnt.target.value)} 
           />
-          <label>Email</label>
-          <input 
-            type='email'
-            value={email}
-            onChange={evnt => setEmail(evnt.target.value)} 
-          />
           <label>Password</label>
           <input 
             type='password'
@@ -55,4 +48,4 @@ const SignUp = (props) => {
   );
 };
 
-export default SignUp;
+export default SignIn;
