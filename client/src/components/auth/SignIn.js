@@ -14,6 +14,13 @@ const SignIn = (props) => {
 
   const onSignUp = async (evnt) => {
     evnt.preventDefault();
+    
+    //all three fields must be present
+    if (!username || !password) {
+      setErrorMSG('Please enter all of username, password and email.');
+      return;
+    }
+
     let err = await requestSignIn({username, password});
 
     if (err) {
@@ -26,7 +33,7 @@ const SignIn = (props) => {
   return (
     <div>
       <section>
-        <h2>SignUp</h2>
+        <h2>Sign In</h2>
         <form onSubmit={(evnt) => onSignUp(evnt)}>
           <label>Username</label>
           <input 

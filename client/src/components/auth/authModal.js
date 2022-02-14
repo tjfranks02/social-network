@@ -1,3 +1,7 @@
+/*
+hoc for authentication modal windows. for the time being have abandoned the
+modal windows as I think it's ugly.
+*/
 import React, {useState} from 'react'
 
 export default (ChildComponent) => {
