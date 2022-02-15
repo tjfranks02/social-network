@@ -32,32 +32,42 @@ const SignUp = (props) => {
   };
 
   return (
-    <div>
-      <section>
-        <h2>Sign Up</h2>
-        <form onSubmit={(evnt) => onSignUp(evnt)}>
-          <label>Username</label>
+    <div className='signup-box'>
+      <span className='create-account-span'>Create Account</span>
+      <form 
+        onSubmit={(evnt) => onSignUp(evnt)}
+        className='signup-form'
+      >
+        <div className='input-box'>
+          <label className='field-label' htmlFor='username'>Username</label>
           <input 
             type='text'
             value={username}
+            name='username'
             onChange={evnt => setUsername(evnt.target.value)} 
           />
-          <label>Email</label>
+        </div>
+        <div className='input-box'>
+          <label className='field-label' htmlFor='email'>Email</label>
           <input 
             type='email'
             value={email}
+            name='email'
             onChange={evnt => setEmail(evnt.target.value)} 
           />
-          <label>Password</label>
+        </div>
+        <div className='input-box'>
+          <label className='field-label' htmlFor='password'>Password</label>
           <input 
             type='password'
             value={password}
+            name='password'
             onChange={evnt => setPassword(evnt.target.value)}
           />
-          <button>Create Account</button>
-          {errorMSG}
-        </form>
-      </section>
+        </div>
+        <button>Create Account</button>
+        {errorMSG}
+      </form>
     </div>
   );
 };

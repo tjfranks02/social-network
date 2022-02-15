@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Rubik";
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+}
+
+.container {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+/*
+SIGNUP COMPONENT
+*/
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.create-account-span {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 3.2rem;
+  padding-bottom: 2.4rem;
+}
+
+form label {
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+}
+
+.signup-box {
+}

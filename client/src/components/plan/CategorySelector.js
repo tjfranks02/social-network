@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 
-const CategorySelector = ({onSelect}) => {
+const CategorySelector = ({onSelect, categories}) => {
 
   const handleSelect  = (evnt) => {
     evnt.preventDefault();
@@ -8,22 +8,18 @@ const CategorySelector = ({onSelect}) => {
   };  
 
   const constructCategories = () => {
-    //in future will have some kind of async function to get all category types.
-    let categories = ['Running', 'Reading'];
-
     categories = categories.map((category) => {
       return (
         <option key={category} value={category}>{category}</option>
       );
     });
 
-    return (
-      categories
-    );
+    return categories;
   };
 
   return (
     <select onChange={(evnt) => handleSelect(evnt)}>
+      <option defaultValue='' disabled hidden>Please select a category</option>
       {constructCategories()}
     </select>
   );
