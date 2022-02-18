@@ -27,26 +27,52 @@ SIGNUP COMPONENT
 .signup-form {
   display: flex;
   flex-direction: column;
+  gap: 2.4rem;
 }
 
 .input-box {
   display: flex;
+  width: 80%;
+  margin: auto;
   flex-direction: column;
-
 }
 
 .create-account-span {
-  display: inline-block;
-  font-weight: 700;
-  font-size: 3.2rem;
+  display: table;
+  font-weight: 600;
+  font-size: 3.0rem;
+  margin: 0 auto;
   padding-bottom: 2.4rem;
+  padding-top: 2.4rem;
 }
 
 form label {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.2rem;
-  padding-bottom: 1rem;
+  padding-bottom: 0.8rem;
 }
 
 .signup-box {
+  margin: auto;
+  max-width: 35rem;
+  border-radius: 1.2rem;
+  box-shadow: 0rem 0rem 2rem 0.01rem #ffd43b;
+}
+
+.signup-button {
+  display: block;
+  background-color: #fcc419;
+  border: none;
+  font-size: 1.8rem;
+  border-radius: 1.2rem;
+  margin: 1.2rem auto;
+  width: 80%;
+  color: white;
+  padding: 1.2rem 0;
+}
+
+.signup-input {
+  height: 3.2rem;
+  border: 0.15rem solid #ffd43b;
+  border-radius: 2.4rem;
 }

@@ -33,7 +33,7 @@ const SignUp = (props) => {
 
   return (
     <div className='signup-box'>
-      <span className='create-account-span'>Create Account</span>
+      <span className='create-account-span'>Sign Up</span>
       <form 
         onSubmit={(evnt) => onSignUp(evnt)}
         className='signup-form'
@@ -44,6 +44,7 @@ const SignUp = (props) => {
             type='text'
             value={username}
             name='username'
+            className='signup-input'
             onChange={evnt => setUsername(evnt.target.value)} 
           />
         </div>
@@ -53,6 +54,7 @@ const SignUp = (props) => {
             type='email'
             value={email}
             name='email'
+            className='signup-input'
             onChange={evnt => setEmail(evnt.target.value)} 
           />
         </div>
@@ -62,10 +64,11 @@ const SignUp = (props) => {
             type='password'
             value={password}
             name='password'
+            className='signup-input'
             onChange={evnt => setPassword(evnt.target.value)}
           />
         </div>
-        <button>Create Account</button>
+        <button className='signup-button'>Create Account</button>
         {errorMSG}
       </form>
     </div>
