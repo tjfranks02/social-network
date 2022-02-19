@@ -21,9 +21,11 @@ body {
   padding: 10px;
 }
 
-/*
-SIGNUP COMPONENT
-*/
+/*****************************************
+
+AUTHENTICATION COMPONENTS (SignIn, SignUp)
+
+******************************************/
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -42,7 +44,7 @@ SIGNUP COMPONENT
   font-weight: 600;
   font-size: 3.0rem;
   margin: 0 auto;
-  padding-bottom: 3.2rem;
+  padding-bottom: 4.0rem;
   padding-top: 2.4rem;
 }
 
@@ -65,7 +67,8 @@ form label {
   border: none;
   font-size: 1.8rem;
   border-radius: 1.2rem;
-  margin: 1.2rem auto;
+  margin: 0rem auto;
+  margin-bottom: 1.2rem;
   width: 80%;
   color: white;
   padding: 1.2rem 0;
@@ -78,7 +81,7 @@ form label {
   padding: 0 1rem;
 }
 
-.signup-input:active, .signup-input:focus {
+.auth-input:active, .auth-input:focus {
   font-size: 13px;
   border: 0.2rem solid #fab005;
   outline: none;
