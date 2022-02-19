@@ -18,7 +18,7 @@ const CategorySelector = ({onSelect, categories}) => {
   };
 
   return (
-    <select onChange={(evnt) => handleSelect(evnt)}>
+    <select className='form-input' onChange={(evnt) => handleSelect(evnt)}>
       <option defaultValue='' disabled hidden>Please select a category</option>
       {constructCategories()}
     </select>

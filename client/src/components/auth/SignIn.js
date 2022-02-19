@@ -32,7 +32,7 @@ const SignIn = (props) => {
 
   return (
     <div className='auth-box'>
-      <span className='auth-method-type'>Sign In</span>
+      <span className='centered-form-header'>Sign In</span>
       <form 
         onSubmit={(evnt) => onSignUp(evnt)}
         className='auth-form'
@@ -43,7 +43,7 @@ const SignIn = (props) => {
             type='text'
             value={username}
             name='username'
-            className='auth-input'
+            className='form-input'
             onChange={evnt => setUsername(evnt.target.value)} 
           />
         </div>
@@ -53,12 +53,12 @@ const SignIn = (props) => {
             type='password'
             name='password'
             value={password}
-            className='auth-input'
+            className='form-input'
             onChange={evnt => setPassword(evnt.target.value)}
           />
         </div>
-        <span className='auth-error'>{errorMSG}</span>
-        <button className='auth-action-button'>Sign In</button>
+        <span className='form-error'>{errorMSG}</span>
+        <button className='action-button'>Sign In</button>
       </form>
     </div>
   );

@@ -10,6 +10,7 @@ const CreatePlan = () => {
   const [planName, setPlanName] = useState('');
   const [category, setCategory] = useState(categories[0]);
   const [numDays, setNumDays] = useState('');
+  const [errorMSG, setErrorMSG] = useState('');
 
   const onCreatePlan = (evnt) => {
     evnt.preventDefault(); 
@@ -19,30 +20,40 @@ const CreatePlan = () => {
   };
 
   return (
-    <div>
-      <h2>Create Plan</h2>
-      <form onSubmit={(evnt) => onCreatePlan(evnt)}>
-        <h4>Name</h4>
-        <input 
-          type='text'
-          onChange={(evnt) => setPlanName(evnt.target.value)}
-        />
-        <div className='category-box'> 
-          <h4>Category</h4>
-            <CategorySelector 
-              onSelect={(cat) => setCategory(cat)} 
-              categories={categories}
-            />
+    <div className='auth-box'>
+      <span className='centered-form-header'>Create Plan</span>
+      <form 
+        onSubmit={(evnt) => onCreatePlan(evnt)}
+        className='auth-form'
+      >
+        <div className='input-box'>
+          <label className='field-label'>Name</label>
+          <input 
+            type='text'
+            onChange={(evnt) => setPlanName(evnt.target.value)}
+            className='form-input'
+          />
         </div>
-        <h4>How many days?</h4>
-        <input
-          type='number' 
-          onChange={(evnt) => setNumDays(evnt.target.value)}
-          min='1'
-          value={numDays}  
-        />
-        <br />
-        <button>Create Plan</button>
+        <div className='input-box'> 
+          <label className='field-label' htmlFor='catselector'>Category</label>
+          <CategorySelector 
+            onSelect={(cat) => setCategory(cat)} 
+            categories={categories}
+            name='catselector'
+          />
+        </div>
+        <div className='input-box'>
+          <label className='field-label'>How many days?</label>
+          <input
+            type='number' 
+            onChange={(evnt) => setNumDays(evnt.target.value)}
+            min='1'
+            className='form-input'
+            value={numDays}  
+          />
+        </div>
+        <span className='form-error'>{errorMSG}</span>
+        <button className='action-button'>Create Plan</button>
       </form>
     </div>
   );
