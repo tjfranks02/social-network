@@ -24,7 +24,7 @@ body {
 /*
 SIGNUP COMPONENT
 */
-.signup-form {
+.auth-form {
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
@@ -37,12 +37,12 @@ SIGNUP COMPONENT
   flex-direction: column;
 }
 
-.create-account-span {
+.auth-method-type {
   display: table;
   font-weight: 600;
   font-size: 3.0rem;
   margin: 0 auto;
-  padding-bottom: 2.4rem;
+  padding-bottom: 3.2rem;
   padding-top: 2.4rem;
 }
 
@@ -52,14 +52,14 @@ form label {
   padding-bottom: 0.8rem;
 }
 
-.signup-box {
+.auth-box {
   margin: auto;
   max-width: 35rem;
   border-radius: 1.2rem;
   box-shadow: 0rem 0rem 2rem 0.01rem #ffd43b;
 }
 
-.signup-button {
+.auth-action-button {
   display: block;
   background-color: #fcc419;
   border: none;
@@ -71,8 +71,22 @@ form label {
   padding: 1.2rem 0;
 }
 
-.signup-input {
+.auth-input {
   height: 3.2rem;
   border: 0.15rem solid #ffd43b;
   border-radius: 2.4rem;
+  padding: 0 1rem;
+}
+
+.signup-input:active, .signup-input:focus {
+  font-size: 13px;
+  border: 0.2rem solid #fab005;
+  outline: none;
+  transition: border 100ms linear;
+}
+
+.auth-error {
+  color: red;
+  margin: auto;
+  font-size: 1.2rem;
 }

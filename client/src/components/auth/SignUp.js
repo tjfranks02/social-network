@@ -18,7 +18,7 @@ const SignUp = (props) => {
 
     //all three fields must be present
     if (!username || !password || !email) {
-      setErrorMSG('Please enter all of username, password and email.');
+      setErrorMSG('Please enter username, password and email.');
       return;
     }
 
@@ -32,11 +32,11 @@ const SignUp = (props) => {
   };
 
   return (
-    <div className='signup-box'>
-      <span className='create-account-span'>Sign Up</span>
+    <div className='auth-box'>
+      <span className='auth-method-type'>Sign Up</span>
       <form 
         onSubmit={(evnt) => onSignUp(evnt)}
-        className='signup-form'
+        className='auth-form'
       >
         <div className='input-box'>
           <label className='field-label' htmlFor='username'>Username</label>
@@ -44,7 +44,7 @@ const SignUp = (props) => {
             type='text'
             value={username}
             name='username'
-            className='signup-input'
+            className='auth-input'
             onChange={evnt => setUsername(evnt.target.value)} 
           />
         </div>
@@ -54,7 +54,7 @@ const SignUp = (props) => {
             type='email'
             value={email}
             name='email'
-            className='signup-input'
+            className='auth-input'
             onChange={evnt => setEmail(evnt.target.value)} 
           />
         </div>
@@ -64,12 +64,12 @@ const SignUp = (props) => {
             type='password'
             value={password}
             name='password'
-            className='signup-input'
+            className='auth-input'
             onChange={evnt => setPassword(evnt.target.value)}
           />
         </div>
-        <button className='signup-button'>Create Account</button>
-        {errorMSG}
+        <span className='auth-error'>{errorMSG}</span>
+        <button className='auth-action-button'>Create Account</button>
       </form>
     </div>
   );
