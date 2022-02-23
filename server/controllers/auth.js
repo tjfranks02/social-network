@@ -5,7 +5,7 @@ const crypto = require("crypto")
 const jwtSecret = require("../config/keys").authKeys.jwtSecret
 const refreshSecret = require("../config/keys").authKeys.refreshSecret
 const connection = require("../connect")
-const util = require("../util")
+const strUtil = require("../util/stringUtil")
 
 
 /*
@@ -47,7 +47,7 @@ returns (Promise):
   resolved when db successfully queried and res returned, rejected otherwise.
 */
 const findOneUser = (username, email) => {
-  let sql = util.format("SELECT username " 
+  let sql = strUtil.format("SELECT username " 
     + "FROM users "
     + "WHERE username='{0}' OR email='{1}';", username, email
   );
@@ -66,7 +66,7 @@ returns (Promise):
   resolved if db queried sucessfully and res returned, rejected otherwise. 
 */
 const findUserByUsername = (username) => {
-  let sql = util.format("SELECT username, password "
+  let sql = strUtil.format("SELECT username, password "
     + "FROM users "
     + "WHERE username='{0}';", username
   );
@@ -87,7 +87,7 @@ returns (Promise):
   resolves if user succesfully inserted, rejects otherwise.
 */
 const insertOneUser = (username, email, password, userId) => {
-  let sql = util.format("INSERT INTO users "
+  let sql = strUtil.format("INSERT INTO users "
     + "VALUES('{0}','{1}','{2}','{3}');", userId, username, password, email
   );
     return connection(sql);
@@ -115,7 +115,7 @@ const verifyPassword = (user, password) => {
           resolve(match)
         } else {
           reject({
-            errMSG: "The passwords do not match."
+            errorMSG: "Incorrect username or password."
           });
         }
       });
@@ -191,8 +191,7 @@ exports.signin = (req, res, next) => {
     });
   })
   .catch((err) => {
-    console.log(err);
-    return res.status(500).send(err);
+    return res.status(422).send(err);
   });
 };  
 
@@ -246,7 +245,6 @@ exports.signup = async (req, res, next) => {
       resolve();
     });
   }).catch((err) => {
-    console.log(err);
     return res.status(422).send(err);
   });
 };
