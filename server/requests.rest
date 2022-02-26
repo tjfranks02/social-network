@@ -2,9 +2,9 @@ POST http://localhost:5000/signin
 content-type: application/json
 
 {
-  "username": "tyson",
+  "username": "lenaa",
   "password": "yeehaw",
-  "email": "tyson@tyson.com"
+  "email": "lena@aaf.com"
 }
 
 ###
@@ -16,5 +16,5 @@ content-type: application/json
   "planName": "hello",
   "category": "running",
   "numDays": 5,
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0eXNvbiIsImlhdCI6MTY0NTYxNzU4MywiZXhwIjoxNjQ4MjA5NTgzfQ.VUwLfrEuBVu7p3yHsiuv8WiN_1pmLI2yEbv2Jz52vNw"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiZWNmNTA3ZDRhOTBiMTA5YjhkZjBkM2RhMjE5YmNiYiIsImlhdCI6MTY0NTg1MTc4NSwiZXhwIjoxNjQ4NDQzNzg1fQ.G9LyXSB6icBhU5hcQdPiRUIHphCSO8Wo7Cti4D5NyLk"
 }

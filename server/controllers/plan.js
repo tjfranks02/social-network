@@ -19,11 +19,19 @@ exports.createPlan = (req, res, next) => {
     });
   }
 
-  // const sql = strUtil.format("INSERT INTO plans "
-  // + "VALUES({0}, {1}, {2}, {3}, {4});", plan_id,);
+  const sql = strUtil.format("INSERT INTO plans "
+    + "VALUES('{0}', '{1}', {2}, '{3}', '{4}');", 
+    username, plan_id, numDays, category, planName
+  );
 
-  // connection("INSERT INTO plans "
-  //   + "VALUES({0}, {1}, {2}, {3}, {4});"
-  // );
+  connection(sql).then(() => {
+    return res.json({
+      plan_id: plan_id
+    });
+  }).catch(() => {
+    return res.status(500).send({
+      errorMSG: "Failed to create plan."
+    });
+  });
 
 };

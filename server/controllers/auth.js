@@ -66,7 +66,7 @@ returns (Promise):
   resolved if db queried sucessfully and res returned, rejected otherwise. 
 */
 const findUserByUsername = (username) => {
-  let sql = strUtil.format("SELECT username, password "
+  let sql = strUtil.format("SELECT * "
     + "FROM users "
     + "WHERE username='{0}';", username
   );
@@ -104,7 +104,7 @@ params:
   db.
 
 returns (Promise):
-  resolves if password matches user already in db, rejects otherwise.
+  resolves with id of matching user if password valid, rejects otherwise.
 */
 const verifyPassword = (user, password) => {
 
@@ -112,7 +112,7 @@ const verifyPassword = (user, password) => {
     .then((match) => {
       return new Promise((resolve, reject) => {
         if (match) {
-          resolve(match)
+          resolve({match: match, id: user.user_id});
         } else {
           reject({
             errorMSG: "Incorrect username or password."
@@ -177,12 +177,13 @@ exports.signin = (req, res, next) => {
   .then((existingUser) => {
     return verifyPassword(existingUser, password);
   })
-  .then((match) => {
+  .then(({match, id}) => {
     return new Promise((resolve, reject) => {
-      if (match) {
+    
+      if (match) {  
         res.json({
-          token: genToken(username, jwtSecret, "30d"),
-          refresh_token: genToken(username, refreshSecret, "30d")
+          token: genToken(id, jwtSecret, "30d"),
+          refresh_token: genToken(id, refreshSecret, "30d")
         });
         resolve();
       } else {
@@ -239,8 +240,8 @@ exports.signup = async (req, res, next) => {
   .then(() => {
     return new Promise((resolve) => {
       res.json({
-        token: genToken(username, jwtSecret, "30d"),
-        refresh_token: genToken(username, refreshSecret, "30d")
+        token: genToken(userId, jwtSecret, "30d"),
+        refresh_token: genToken(userId, refreshSecret, "30d")
       });
       resolve();
     });
