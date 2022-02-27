@@ -9,7 +9,7 @@ exports.createPlan = (req, res, next) => {
   let numDays = req.body.numDays;
   let category = req.body.category;
   let plan_id = crypto.randomBytes(16).toString("hex");
-  let token = req.body.token;
+  const token = req.headers.authorization
 
   let username = tokUtil.decryptToken(token).sub;
 
@@ -26,7 +26,7 @@ exports.createPlan = (req, res, next) => {
 
   connection(sql).then(() => {
     return res.json({
-      plan_id: plan_id
+      planId: plan_id
     });
   }).catch(() => {
     return res.status(500).send({
