@@ -22,10 +22,10 @@ const SignUp = (props) => {
       return;
     }
 
-    let err = await requestSignUp({username, password, email});
+    let res = await requestSignUp({username, password, email});
     
-    if (err) {
-      setErrorMSG(err);
+    if (res.errorMSG) {
+      setErrorMSG(res.errorMSG);
     } else {
       nav('/', {replace: true});
     }

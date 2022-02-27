@@ -51,6 +51,13 @@ GENERAL COMPONENTS
   padding: 0 1rem;
 }
 
+.form-input:active, .form-input:focus {
+  font-size: 13px;
+  border: 0.2rem solid #fab005;
+  outline: none;
+  transition: border 100ms linear;
+}
+
 .action-button {
   display: block;
   background-color: #fcc419;
@@ -101,14 +108,7 @@ form label {
   max-height: 50rem;
   border-radius: 1.2rem;
   box-shadow: 0rem 0rem 2rem 0.01rem #ffd43b;
-}
-
-.auth-input:active, .auth-input:focus {
-  font-size: 13px;
-  border: 0.2rem solid #fab005;
-  outline: none;
-  transition: border 100ms linear;
-}
+} 
 
 /* .auth-error {
   color: red;

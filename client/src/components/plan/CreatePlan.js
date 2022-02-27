@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 import CategorySelector from './CategorySelector'
+import {createPlan as requestCreatePlan} from '../../api/plan' 
 
 //until the backend route is completed, use a hardcoded list of catgories
 let categories = ['Running', 'Reading'];
@@ -12,11 +14,25 @@ const CreatePlan = () => {
   const [numDays, setNumDays] = useState('');
   const [errorMSG, setErrorMSG] = useState('');
 
-  const onCreatePlan = (evnt) => {
+  const nav = useNavigate();
+
+  const onCreatePlan = async (evnt) => {
     evnt.preventDefault(); 
-    console.log('Plan name:', planName);
-    console.log('Category:', category);
-    console.log('Number of days:', numDays);
+    
+    //all three fields must be present
+    if (!planName || !category || !numDays) {
+      setErrorMSG('Please enter username, password and email.');
+      return;
+    }
+
+    let res = await requestCreatePlan({planName, category, numDays});
+    
+    if (res.errorMSG) {
+      setErrorMSG(res.errorMSG);
+    } else {
+      nav('/plan/' + res.planId);
+    }
+
   };
 
   return (
