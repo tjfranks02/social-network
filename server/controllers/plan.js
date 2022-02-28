@@ -35,3 +35,43 @@ exports.createPlan = (req, res, next) => {
   });
 
 };
+
+
+exports.getPlanDetails = (req, res, next) => {
+  const planId = req.params.planId;
+  const token = req.headers.authorization;
+  
+  const userId = tokUtil.decryptToken(token).sub;
+
+  if (!planId) {
+    return res.json({
+      errorMSG: 'Plan cannot be fetched without ID.'
+    });
+  }
+
+  const sql = strUtil.format("SELECT * "
+    + "FROM plans "
+    + "WHERE plan_id={0} AND username={1};", planId, userId
+  ); 
+
+  connection(sql).then((planDetails) => {
+    
+    return new Promise((resolve, reject) => {
+
+      if (!planDetails) {
+        reject({
+          errorMSG: 'There is no plan with that id.' 
+        });
+      }
+
+      //if successful
+      res.json({
+        planDetails: planDetails
+      });
+      resolve();
+
+    });
+  }).catch((err) => {
+    res.status(422).send(err);
+  });
+};

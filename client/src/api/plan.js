@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 import config from './config'
-
 const apiBaseUrl = config.apiBaseUrl;
 
+const token = localStorage.getItem("token");
+
 export function createPlan({planName, category, numDays}) {
-  let token = localStorage.getItem("token");
 
   return axios.post(apiBaseUrl + '/plan/create', 
     {
@@ -21,4 +21,21 @@ export function createPlan({planName, category, numDays}) {
     }).catch((err) => {
       return {errorMSG: err.response.data.errorMSG};
     });
+};
+
+
+export function getPlanDetails({planId}) {
+
+  return axios.get(apiBaseUrl + '/plan/details/' + planId,
+    {
+      headers: {'Authorization': token}
+    }
+  )
+  .then((res) => {
+    return res;
+  })
+  .catch((err) => {
+    return {errorMSG: err.response.data.errorMSG};
+  });
+
 };
