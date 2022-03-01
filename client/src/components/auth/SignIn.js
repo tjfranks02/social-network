@@ -31,11 +31,11 @@ const SignIn = (props) => {
   };
 
   return (
-    <div className='auth-box'>
+    <div className='form-box'>
       <span className='centered-form-header'>Sign In</span>
       <form 
         onSubmit={(evnt) => onSignUp(evnt)}
-        className='auth-form'
+        className='general-form'
       >
         <div className='input-box'>
           <label className='field-label' htmlFor='username'>Username</label>

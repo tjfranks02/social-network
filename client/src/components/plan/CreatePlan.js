@@ -36,11 +36,11 @@ const CreatePlan = () => {
   };
 
   return (
-    <div className='auth-box'>
+    <div className='form-box'>
       <span className='centered-form-header'>Create Plan</span>
       <form 
         onSubmit={(evnt) => onCreatePlan(evnt)}
-        className='auth-form'
+        className='general-form'
       >
         <div className='input-box'>
           <label className='field-label'>Name</label>

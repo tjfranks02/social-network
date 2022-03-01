@@ -77,16 +77,17 @@ GENERAL COMPONENTS
   font-size: 1.2rem;
 }
 
-
-/*****************************************
-
-AUTHENTICATION COMPONENTS (SignIn, SignUp)
-
-******************************************/
-.auth-form {
+.general-form {
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
+}
+
+.form-box {
+  margin: auto;
+  max-width: 35rem;
+  border-radius: 1.2rem;
+  box-shadow: 0rem 0rem 2rem 0.01rem #ffd43b;
 }
 
 .input-box {
@@ -102,35 +103,11 @@ form label {
   padding-bottom: 0.8rem;
 }
 
-.auth-box {
-  margin: auto;
-  max-width: 35rem;
-  max-height: 50rem;
-  border-radius: 1.2rem;
-  box-shadow: 0rem 0rem 2rem 0.01rem #ffd43b;
-} 
 
-/* .auth-error {
-  color: red;
-  margin: auto;
-  font-size: 1.2rem;
-} */
-
-
-/*********************
-
-CREATE PLAN COMPONENT
-
-*********************/
-.auth-box {
-  margin: auto;
-  max-width: 35rem;
-  border-radius: 1.2rem;
-  box-shadow: 0rem 0rem 2rem 0.01rem #ffd43b;
-}
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
+/********************
+PLAN EDITOR COMPONENT
+********************/
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1rem 1rem 1rem;
 }
