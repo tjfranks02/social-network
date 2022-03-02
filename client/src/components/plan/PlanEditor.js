@@ -6,10 +6,9 @@ import {getPlanDetails} from '../../api/plan'
 
 const PlanEditor = () => {
   
-  const [numDays, setNumDays] = useState(1);
+  const [numDays, setNumDays] = useState(5);
 
   const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
 

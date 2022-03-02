@@ -23,25 +23,37 @@ GENERAL COMPONENTS
 ******************/
 /*the container for the website content*/
 .container {
+  position: relative;
   margin: auto;
   width: 60%;
   padding: 10px;
 }
 
-/*text header for the top of forms. e.g. signup*/
-.centered-form-header {
-  display: table;
-  font-weight: 600;
-  font-size: 3.0rem;
-  margin: 0 auto;
-  padding-bottom: 4.0rem;
-  padding-top: 2.4rem;
+.form-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  width: 35rem;
+  height: auto;
+  padding: 1.2rem;
+  margin-left: -20rem;
+  margin-top: 20rem;
+  border-radius: 1.2rem;
+  box-shadow: 0rem 0rem 2rem 0.01rem #ffd43b;
 }
 
-.field-label {
-  font-weight: 400;
-  font-size: 1.2rem;
-  padding-bottom: 0.8rem;
+.general-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.input-box {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  flex-direction: column;
 }
 
 .form-input {
@@ -64,43 +76,38 @@ GENERAL COMPONENTS
   border: none;
   font-size: 1.8rem;
   border-radius: 1.2rem;
-  margin: 0rem auto;
-  margin-bottom: 1.2rem;
+  margin: 0 auto;
   width: 80%;
   color: white;
   padding: 1.2rem 0;
 }
 
-.form-error {
-  color: red;
-  margin: auto;
-  font-size: 1.2rem;
-}
-
-.general-form {
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-}
-
-.form-box {
-  margin: auto;
-  max-width: 35rem;
-  border-radius: 1.2rem;
-  box-shadow: 0rem 0rem 2rem 0.01rem #ffd43b;
-}
-
-.input-box {
-  display: flex;
-  width: 80%;
-  margin: auto;
-  flex-direction: column;
+/*text header for the top of forms. e.g. signup*/
+.centered-form-header {
+  display: table;
+  font-weight: 600;
+  font-size: 3.0rem;
+  margin: 0 auto;
+  padding-bottom: 4.0rem;
+  padding-top: 2.4rem;
 }
 
 form label {
   font-weight: 400;
   font-size: 1.2rem;
   padding-bottom: 0.8rem;
+}
+
+.field-label {
+  font-weight: 400;
+  font-size: 1.2rem;
+  padding-bottom: 0.8rem;
+}
+
+.form-error {
+  color: red;
+  margin: auto;
+  font-size: 1.2rem;
 }
 
 
@@ -110,4 +117,5 @@ PLAN EDITOR COMPONENT
 .grid-3 {
   display: grid;
   grid-template-columns: 1rem 1rem 1rem;
+  gap: 5rem;
 }
