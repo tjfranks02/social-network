@@ -21,7 +21,7 @@ const CreatePlan = () => {
     
     //all three fields must be present
     if (!planName || !category || !numDays) {
-      setErrorMSG('Please enter username, password and email.');
+      setErrorMSG('Please enter the plan name, category and number of days.');
       return;
     }
 

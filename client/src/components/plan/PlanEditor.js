@@ -25,7 +25,7 @@ const PlanEditor = () => {
 
     for (let i = 0; i <= numDays; i++) {
       days.push(
-        <div>
+        <div className='plan-day-tile'>
           {i}
         </div>
       );

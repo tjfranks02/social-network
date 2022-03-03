@@ -25,6 +25,7 @@ GENERAL COMPONENTS
 .container {
   position: relative;
   margin: auto;
+  height: 100vh;
   width: 60%;
   padding: 10px;
 }
@@ -33,12 +34,11 @@ GENERAL COMPONENTS
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   margin: auto;
   width: 35rem;
   height: auto;
   padding: 1.2rem;
-  margin-left: -20rem;
-  margin-top: 20rem;
   border-radius: 1.2rem;
   box-shadow: 0rem 0rem 2rem 0.01rem #ffd43b;
 }
@@ -114,8 +114,27 @@ form label {
 /********************
 PLAN EDITOR COMPONENT
 ********************/
+.plan-editor-container {
+  margin: auto;
+  width: 100%;
+  border: 2px yellow solid;
+  overflow: hidden;
+}
+
 .grid-3 {
   display: grid;
-  grid-template-columns: 1rem 1rem 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 5rem;
+  justify-items: center;
+  padding: 5rem 0;
+  text-align: center;
+  line-height: 5rem;
+}
+
+.plan-day-tile {
+  background-color: green;
+  height: 5rem;
+  width: 5rem;
+  color: white;
+
 }
