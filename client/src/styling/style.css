@@ -37,6 +37,7 @@ GENERAL COMPONENTS
   transform: translate(-50%, -50%);
   margin: auto;
   width: 35rem;
+  max-width: 100%;
   height: auto;
   padding: 1.2rem;
   border-radius: 1.2rem;
