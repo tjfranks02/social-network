@@ -51,27 +51,28 @@ exports.getPlanDetails = (req, res, next) => {
 
   const sql = strUtil.format("SELECT * "
     + "FROM plans "
-    + "WHERE plan_id={0} AND username={1};", planId, userId
+    + "WHERE plan_id='{0}' AND user_id='{1}';", planId, userId
   ); 
 
   connection(sql).then((planDetails) => {
     
     return new Promise((resolve, reject) => {
 
-      if (!planDetails) {
-        reject({
+      if (planDetails.length === 0 || !planDetails) {
+        return reject({
           errorMSG: 'There is no plan with that id.' 
         });
+        
       }
 
       //if successful
       res.json({
-        planDetails: planDetails
+        planDetails: planDetails[0]
       });
-      resolve();
-
+      return resolve();
     });
   }).catch((err) => {
-    res.status(422).send(err);
+    console.log("ERROR FINALLY?");
+    return res.status(422).send(err);
   });
 };

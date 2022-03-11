@@ -139,3 +139,7 @@ PLAN EDITOR COMPONENT
   color: white;
 
 }
+
+.plan-day-tile:hover {
+  cursor: pointer;
+}

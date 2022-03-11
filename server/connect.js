@@ -45,7 +45,7 @@ module.exports = (sql) => {
         if (err) {
           reject({errorMSG: "Failed to query DB."});
         }
-
+        
         resolve(results);
       });
     });

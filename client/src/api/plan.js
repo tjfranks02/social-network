@@ -25,16 +25,17 @@ export function createPlan({planName, category, numDays}) {
 
 
 export function getPlanDetails({planId}) {
-
+  
   return axios.get(apiBaseUrl + '/plan/details/' + planId,
     {
       headers: {'Authorization': token}
     }
   )
   .then((res) => {
-    return res;
+    return res.data.planDetails;
   })
   .catch((err) => {
+    console.log(err.response.data.errorMSG);
     return {errorMSG: err.response.data.errorMSG};
   });
 
